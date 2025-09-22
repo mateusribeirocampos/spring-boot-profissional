@@ -4,12 +4,13 @@ import org.example.model.Employee;
 
 public class SalaryService {
 
-    // dependencias
+    // dependencies - controller inversion
     private TaxService taxService;
     private PensionService pensionService;
 
+    // dependency injection
     public SalaryService(TaxService taxService, PensionService pensionService) {
-        this.taxService = taxService;
+        this.taxService = taxService; // this reference the  attribute was class
         this.pensionService = pensionService;
     }
 

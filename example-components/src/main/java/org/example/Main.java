@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.model.Employee;
+import org.example.services.BrazilTaxService;
 import org.example.services.PensionService;
 import org.example.services.SalaryService;
 import org.example.services.TaxService;
@@ -18,7 +19,8 @@ public class Main {
 
         Employee employee = new Employee(name, grossSalary);
 
-        TaxService taxService = new TaxService();
+        //TaxService taxService = new TaxService(); // manually instantiated
+        TaxService taxService = new BrazilTaxService(); // Upcasting
         PensionService pensionService = new PensionService();
 
         SalaryService salaryService = new SalaryService(taxService, pensionService);
