@@ -1,4 +1,4 @@
-package org.example.model;
+package com.campos.aula1.entities;
 
 public class Employee {
 
