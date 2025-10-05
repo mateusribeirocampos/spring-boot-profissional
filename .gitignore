@@ -200,3 +200,8 @@ README.html
 .env
 .idea
 
+# Dados sensíveis
+db.properties
+
+# Mas versione o exemplo
+!db.properties.example
