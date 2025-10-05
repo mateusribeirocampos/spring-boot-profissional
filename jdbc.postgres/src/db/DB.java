@@ -32,7 +32,7 @@ public class DB {
 	
 	// method to close the connection.
 	public static void closeConnection() {
-		if (conn != null) { // ⚠️ CORRIGI: estava "== null", deveria ser "!= null"
+		if (conn != null) {
 			try {
 				conn.close();
 			} catch (SQLException e) {
