@@ -68,7 +68,7 @@ public class DB {
 			props.setProperty("password", dbpswd);
 		}
 		
-		if (!props.containsKey("dburl") || props.containsKey("user") || props.containsKey("password")) {
+		if (!props.containsKey("dburl") || !props.containsKey("user") || !props.containsKey("password")) {
 			throw new DbException("Database configuration is incomplete. Check environment variables or db.properties");
 		}
 		

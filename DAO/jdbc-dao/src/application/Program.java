@@ -1,9 +1,9 @@
 package application;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import model.entities.Department;
+import model.dao.DaoFactory;
+import model.dao.SellerDao;
 import model.entities.Seller;
 
 public class Program {
@@ -12,14 +12,13 @@ public class Program {
 		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
-		Department dep = new Department(1, "Books");
+		SellerDao sellerDao = DaoFactory.createSellerDao();
 		
-		System.out.println(dep.toString());
+		Seller seller = sellerDao.findById(11);
 		
-		LocalDate birth_date = LocalDate.parse("22/04/1985", dtf);
+		System.out.println(seller);
 		
-		Seller sel = new Seller(1, "Maria Brown", "maria.brown@email.com", birth_date, 3000.00);
-		System.out.println(sel.toString());
+		
 
 	}
 
