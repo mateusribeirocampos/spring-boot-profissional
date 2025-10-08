@@ -234,4 +234,40 @@ public class SellerDaoJDBC implements SellerDao {
 		}
 	}
 
+	public List<Seller> findByBaseSalaryGreatThan4000(double base_salary) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement("SELECT s.*, d.name AS depName\r\n"
+					+ "FROM seller s INNER JOIN department d\r\n"
+					+ "ON s.department_id = d.id\r\n"
+					+ "WHERE s.base_salary >= ?\r\n"
+					+ "ORDER BY s.base_salary DESC");
+			
+			st.setDouble(1, base_salary);
+			rs = st.executeQuery();
+			
+			List<Seller> list = new ArrayList<Seller>();
+			Map<Integer, Department> map = new HashMap<Integer, Department>();
+			
+			while(rs.next()) {
+				Department dep = map.get(rs.getInt("department_id"));
+				
+				if (dep == null) {
+					dep = instantiateDepartment(rs);
+					map.put(rs.getInt("department_id"), dep);
+				}
+				Seller obj = instantiateSeller(rs, dep);
+				list.add(obj);
+			}
+			return list;
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+	}
+
 }

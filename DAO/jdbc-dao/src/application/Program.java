@@ -68,6 +68,12 @@ public class Program {
 			throw new DbException("The user was not found in the database!");
 		}*/
 		
+		System.out.println("\n ============== TEST 7:seller findByBaseSalaryGreatThan4000 ======================");
+		List<Seller> listSellerBybaseSalary = sellerDao.findByBaseSalaryGreatThan4000(4000.00);
+		for (Seller obj : listSellerBybaseSalary) {
+			System.out.println(obj);
+		}
+		
 		System.out.println("\n ============== TEST 1: Department findById ====================");
 		Department dep = departmentDao.findById(4);
 		System.out.println(dep);
