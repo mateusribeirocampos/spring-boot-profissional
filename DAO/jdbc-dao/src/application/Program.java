@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.DbException;
 import model.dao.DaoFactory;
 import model.dao.DepartmentDao;
 import model.dao.SellerDao;
@@ -77,6 +78,21 @@ public class Program {
 			System.out.println(listDep);
 		}
 		
+		System.out.println("\n ============== TEST 3: Department insert ====================");
+		/*Department dep2 = new Department(null, "Restaurant");
+		departmentDao.insert(dep2);
+		System.out.println(dep2);*/
+		
+		System.out.println("\n ============== TEST 4: Department update ====================");
+		Department dep3 = departmentDao.findById(7);
+		if (dep3 != null) {
+			System.out.println(dep3);
+			Department updateDep = new Department(7, "Health and Beaty");
+			departmentDao.update(updateDep);
+			System.out.println(updateDep + " was update!");
+		} else {
+			throw new DbException("Department not found");
+		}
 		
 	}
 
