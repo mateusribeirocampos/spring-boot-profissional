@@ -13,5 +13,5 @@ public interface SellerDao {
 	Seller findById(Integer id);
 	List<Seller> findAll();
 	List<Seller> findByDepartment(Department department);
-	List<Seller> findByBaseSalaryGreatThan4000(double base_salary);
+	List<Seller> findByBaseSalaryGreaterThan(double base_salary);
 }

@@ -68,7 +68,7 @@ public class Program {
 		}*/
 		
 		System.out.println("\n ============== TEST 7:seller findByBaseSalaryGreatThan4000 ======================");
-		List<Seller> listSellerBybaseSalary = sellerDao.findByBaseSalaryGreatThan4000(4000.00);
+		List<Seller> listSellerBybaseSalary = sellerDao.findByBaseSalaryGreaterThan(4000.00);
 		for (Seller obj : listSellerBybaseSalary) {
 			System.out.println(obj);
 		}
