@@ -19,6 +19,8 @@ import model.entities.Seller;
 public class SellerDaoJDBC implements SellerDao {
 	
 	private Connection conn = null;
+	PreparedStatement st = null;
+	ResultSet rs = null;
 	
 	// dependency
 	public SellerDaoJDBC(Connection conn) {
@@ -27,9 +29,7 @@ public class SellerDaoJDBC implements SellerDao {
 
 	@Override
 	public void insert(Seller obj) {
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		
+
 		try {
 			st = conn.prepareStatement("INSERT INTO seller (name, email, birth_date, base_salary, department_id) \r\n"
 					+ "VALUES (?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
@@ -64,7 +64,6 @@ public class SellerDaoJDBC implements SellerDao {
 		
 	@Override
 	public void update(Seller obj) {
-		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement("UPDATE seller "
 					+ "SET name = ?, email = ?, birth_date = ?, base_salary = ?, department_id = ? "
@@ -88,8 +87,7 @@ public class SellerDaoJDBC implements SellerDao {
 
 	@Override
 	public void deleteById(Integer id) {
-		PreparedStatement st = null;
-		
+
 		try {
 			st = conn.prepareStatement("DELETE FROM seller "
 					+ "WHERE id = ?");
@@ -107,8 +105,7 @@ public class SellerDaoJDBC implements SellerDao {
 
 	@Override
 	public Seller findById(Integer id) {
-		PreparedStatement st = null;
-		ResultSet rs = null;
+
 		try {
 			st = conn.prepareStatement("SELECT seller.*,department.Name as DepName\r\n"
 					+ "FROM seller INNER JOIN department\r\n"
@@ -154,8 +151,6 @@ public class SellerDaoJDBC implements SellerDao {
 
 	@Override
 	public List<Seller> findAll() {
-		PreparedStatement st = null;
-		ResultSet rs = null;
 		
 		try {
 		
@@ -195,8 +190,6 @@ public class SellerDaoJDBC implements SellerDao {
 
 	@Override
 	public List<Seller> findByDepartment(Department department) {
-		PreparedStatement st = null;
-		ResultSet rs = null;
 		
 		try {
 			st = conn.prepareStatement("SELECT seller.*, "
@@ -235,8 +228,7 @@ public class SellerDaoJDBC implements SellerDao {
 	}
 
 	public List<Seller> findByBaseSalaryGreatThan4000(double base_salary) {
-		PreparedStatement st = null;
-		ResultSet rs = null;
+
 		try {
 			st = conn.prepareStatement("SELECT s.*, d.name AS depName\r\n"
 					+ "FROM seller s INNER JOIN department d\r\n"

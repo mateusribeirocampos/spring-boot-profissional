@@ -15,6 +15,8 @@ import model.entities.Department;
 public class DepartmentDaoJDBC implements DepartmentDao {
 	
 	private Connection conn = null;
+	PreparedStatement st = null;
+	ResultSet rs = null;
 
 	public DepartmentDaoJDBC(Connection conn) {
 		this.conn  = conn;
@@ -22,9 +24,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
 	@Override
 	public void insert(Department obj) {
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		
+	
 		try {
 			st = conn.prepareStatement("INSERT INTO department (name) VALUES (?)", 
 					PreparedStatement.RETURN_GENERATED_KEYS);
@@ -55,9 +55,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
 	@Override
 	public void update(Department obj) {
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		
+
 		try {
 			st = conn.prepareStatement("UPDATE department "
 					+ "SET name = ? "
@@ -77,7 +75,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
 	@Override
 	public void deleteById(Integer id) {
-		PreparedStatement st = null;
+
 		try {
 			st = conn.prepareStatement("DELETE FROM department "
 					+ "WHERE id = ?");
@@ -94,8 +92,6 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
 	@Override
 	public Department findById(Integer id) {
-		PreparedStatement st = null;
-		ResultSet rs = null;
 		
 		try {
 			st = conn.prepareStatement("SELECT * FROM department WHERE id = ?", 
@@ -121,8 +117,6 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
 	@Override
 	public List<Department> findAll() {
-		PreparedStatement st = null;
-		ResultSet rs = null;
 		
 		try {
 			st = conn.prepareStatement("SELECT * FROM department", 

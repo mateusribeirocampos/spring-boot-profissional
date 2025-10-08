@@ -1,7 +1,6 @@
 package application;
 
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+//import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import db.DbException;
@@ -15,7 +14,7 @@ public class Program {
 
 	public static void main(String[] args) {
 		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		//DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
 		SellerDao sellerDao = DaoFactory.createSellerDao();
 		DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
