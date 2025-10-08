@@ -11,7 +11,6 @@ import db.DB;
 import db.DbException;
 import model.dao.DepartmentDao;
 import model.entities.Department;
-import model.entities.Seller;
 
 public class DepartmentDaoJDBC implements DepartmentDao {
 	
@@ -78,7 +77,18 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("DELETE FROM department "
+					+ "WHERE id = ?");
+			st.setInt(1, id);
+			st.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
 		
 	}
 
@@ -133,18 +143,6 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 			DB.closeStatement(st);
 			DB.closeResultSet(rs);
 		}
-	}
-	
-	private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
-		Seller obj = new Seller();
-		obj.setId(rs.getInt("id"));
-		obj.setName(rs.getString("name"));
-		obj.setEmail(rs.getString("email"));
-		obj.setBirth_date(rs.getDate("birth_date").toLocalDate());
-		obj.setBase_salary(rs.getDouble("base_salary"));
-		obj.setDepartment(dep);
-		
-		return obj;
 	}
 	
 	private Department instantiateDepartment(ResultSet rs) throws SQLException {

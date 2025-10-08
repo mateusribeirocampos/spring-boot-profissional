@@ -84,12 +84,22 @@ public class Program {
 		System.out.println(dep2);*/
 		
 		System.out.println("\n ============== TEST 4: Department update ====================");
-		Department dep3 = departmentDao.findById(7);
+		/*Department dep3 = departmentDao.findById(7);
 		if (dep3 != null) {
 			System.out.println(dep3);
 			Department updateDep = new Department(7, "Health and Beaty");
 			departmentDao.update(updateDep);
 			System.out.println(updateDep + " was update!");
+		} else {
+			throw new DbException("Department not found");
+		}*/
+		
+		System.out.println("\n ============== TEST 4: Department delete ====================");
+		Department dep4 = departmentDao.findById(9);
+		if (dep4 != null) {
+			System.out.println(dep4);
+			departmentDao.deleteById(9);
+			System.out.println(dep4 + " was deleted!");
 		} else {
 			throw new DbException("Department not found");
 		}
