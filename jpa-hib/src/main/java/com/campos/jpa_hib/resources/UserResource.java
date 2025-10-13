@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/api/users/v1")
 public class UserResource {
 
     @Autowired
@@ -51,5 +51,4 @@ public class UserResource {
     userService.delete(id);
     return ResponseEntity.noContent().build();
     }
-
 }
