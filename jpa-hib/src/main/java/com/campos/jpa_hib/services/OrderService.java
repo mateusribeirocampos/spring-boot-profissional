@@ -1,6 +1,7 @@
 package com.campos.jpa_hib.services;
 
 import com.campos.jpa_hib.entities.Order;
+import com.campos.jpa_hib.entities.User;
 import com.campos.jpa_hib.repositories.OrderRepository;
 import com.campos.jpa_hib.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +26,7 @@ public class OrderService {
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
+    public Order create(Order order) {
+        return orderRepository.save(order);
+    }
 }
