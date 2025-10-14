@@ -1,5 +1,6 @@
 package com.campos.jpa_hib.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -21,6 +22,7 @@ public class Order implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @JsonBackReference
     private User client;
 
     public Order() {}

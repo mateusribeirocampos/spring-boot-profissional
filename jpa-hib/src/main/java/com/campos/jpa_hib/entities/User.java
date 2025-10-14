@@ -1,5 +1,6 @@
 package com.campos.jpa_hib.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -30,6 +31,7 @@ public class User implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "client")
+    @JsonManagedReference
     private List<Order> order = new ArrayList<>();
 
     public User() {};
