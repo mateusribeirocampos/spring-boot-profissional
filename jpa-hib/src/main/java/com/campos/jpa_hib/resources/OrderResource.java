@@ -29,15 +29,4 @@ public class OrderResource {
         Order obj = orderService.findById(id);
         return ResponseEntity.ok().body(obj);
     }
-
-    @PostMapping
-    public ResponseEntity<Order> create(@RequestBody Order order) {
-        Order obj = orderService.create(order);
-        URI uri = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(order.getId())
-                .toUri();
-        return ResponseEntity.created(uri).body(obj);
-    }
 }

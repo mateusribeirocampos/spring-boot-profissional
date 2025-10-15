@@ -1,8 +1,10 @@
 package com.campos.jpa_hib.config;
 
+import com.campos.jpa_hib.entities.Category;
 import com.campos.jpa_hib.entities.Order;
 import com.campos.jpa_hib.entities.User;
 import com.campos.jpa_hib.entities.enums.OrderStatus;
+import com.campos.jpa_hib.repositories.CategoryRepository;
 import com.campos.jpa_hib.repositories.OrderRepository;
 import com.campos.jpa_hib.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class DbSeedConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -42,7 +47,12 @@ public class DbSeedConfig implements CommandLineRunner {
         Order o5 = new Order(null, Instant.parse("2025-10-13T17:58:11Z"), OrderStatus.WAITING_PAYMENT, u2 );
         Order o6 = new Order(null, Instant.parse("2025-10-13T18:03:26Z"), OrderStatus.SHIPPED, u3 );
 
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3, o4, o5, o6));
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
     }
 }
