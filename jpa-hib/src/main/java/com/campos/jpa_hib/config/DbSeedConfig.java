@@ -2,10 +2,12 @@ package com.campos.jpa_hib.config;
 
 import com.campos.jpa_hib.entities.Category;
 import com.campos.jpa_hib.entities.Order;
+import com.campos.jpa_hib.entities.Product;
 import com.campos.jpa_hib.entities.User;
 import com.campos.jpa_hib.entities.enums.OrderStatus;
 import com.campos.jpa_hib.repositories.CategoryRepository;
 import com.campos.jpa_hib.repositories.OrderRepository;
+import com.campos.jpa_hib.repositories.ProductRepository;
 import com.campos.jpa_hib.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -33,6 +35,9 @@ public class DbSeedConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -51,8 +56,15 @@ public class DbSeedConfig implements CommandLineRunner {
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computers");
 
+        Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "https://www.amazon.com.br/");
+        Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "https://www.amazon.com.br/");
+        Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "https://www.amazon.com.br/");
+        Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "https://www.amazon.com.br/");
+        Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "https://www.amazon.com.br/");
+
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3, o4, o5, o6));
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
     }
 }

@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "product_tb")
@@ -21,6 +23,13 @@ public class Product implements Serializable {
     private String description;
     private Double price;
     private String imUrl;
+
+    /*
+    * Why was instantiated -> to prevent that my collection start empty and not null
+    * Why was used HasSet instead Set -> Set is an interface and cannot be instantiated and HashSet is class
+    * */
+    @Transient
+    private Set<Category> categories = new HashSet<>();
 
     public Product() {}
 
@@ -70,6 +79,10 @@ public class Product implements Serializable {
 
     public void setImUrl(String imUrl) {
         this.imUrl = imUrl;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
     }
 
     @Override
