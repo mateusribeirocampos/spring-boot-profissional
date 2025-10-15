@@ -28,7 +28,10 @@ public class Product implements Serializable {
     * Why was instantiated -> to prevent that my collection start empty and not null
     * Why was used HasSet instead Set -> Set is an interface and cannot be instantiated and HashSet is class
     * */
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "product_category_tb",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
     public Product() {}
