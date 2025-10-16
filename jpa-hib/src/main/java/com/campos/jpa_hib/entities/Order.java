@@ -31,6 +31,12 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id")
     private User client;
 
+    /*
+    * OrderItem Collection inside Order class
+    * mapped by OneToMany and by id.order
+    * @EmbeddedId of OrderItemPk have attribute id
+    * and the OrdemItemPk have order.
+    * */
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
 
