@@ -78,8 +78,12 @@ public class DbSeedConfig implements CommandLineRunner {
         OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
         OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
         OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+        OrderItem oi5 = new OrderItem(o6, p5, 3, p5.getPrice());
 
-        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4, oi5));
 
+        Payment pay1 = new Payment(null, Instant.parse("2025-10-13T19:57:03Z"), o1);
+        o1.setPayment(pay1);
+        orderRepository.save(o1);
     }
 }
