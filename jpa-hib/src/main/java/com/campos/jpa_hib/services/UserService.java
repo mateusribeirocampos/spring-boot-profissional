@@ -1,5 +1,6 @@
 package com.campos.jpa_hib.services;
 
+import com.campos.jpa_hib.dto.v1.UserDto;
 import com.campos.jpa_hib.entities.User;
 import com.campos.jpa_hib.repositories.UserRepository;
 import com.campos.jpa_hib.services.exceptions.DatabaseException;

@@ -1,4 +1,4 @@
-package com.campos.jpa_hib.dto;
+package com.campos.jpa_hib.dto.v1;
 
 import java.time.LocalDate;
 import java.util.Objects;
