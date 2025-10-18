@@ -50,12 +50,10 @@ public class UserService {
 
   public void delete(Long id) {
     User user = findById(id);
-    if (user != null) {
       try {
         userRepository.deleteById(id);
       } catch (DataIntegrityViolationException e) {
         throw new DatabaseException(e.getMessage());
       }
-    }
   }
 }

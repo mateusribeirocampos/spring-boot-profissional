@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 @Configuration
-@Profile("test")
+@Profile({"test", "dev"})
 public class DbSeedConfig implements CommandLineRunner {
 
   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
