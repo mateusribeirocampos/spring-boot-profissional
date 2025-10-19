@@ -37,6 +37,14 @@ public class DbSeedConfig implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
 
+
+      if (userRepository.count() > 0) {
+          System.out.println("Database already seeded. Skipping seed...");
+          return;
+      }
+
+      System.out.println("Seeding database...");
+
     Category cat1 = new Category(null, "Electronics");
     Category cat2 = new Category(null, "Books");
     Category cat3 = new Category(null, "Computers");
@@ -92,5 +100,7 @@ public class DbSeedConfig implements CommandLineRunner {
     Payment pay1 = new Payment(null, Instant.parse("2025-10-13T19:57:03Z"), o1);
     o1.setPayment(pay1);
     orderRepository.save(o1);
+
+    IO.println("Database seeded successfully!");
   }
 }
