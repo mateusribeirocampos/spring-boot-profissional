@@ -3,15 +3,15 @@ package com.campos.jpa_hib.dto.v1;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class UserDto {
+public class UserResponseDto {
 
     private Long id;
     private String name;
     private LocalDate birthDate;
 
-    public UserDto() {};
+    public UserResponseDto() {};
 
-    public UserDto(Long id, String name, LocalDate birthDate) {
+    public UserResponseDto(Long id, String name, LocalDate birthDate) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
@@ -44,7 +44,7 @@ public class UserDto {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        UserDto userDto = (UserDto) o;
+        UserResponseDto userDto = (UserResponseDto) o;
         return Objects.equals(id, userDto.id) && Objects.equals(name, userDto.name) && Objects.equals(birthDate, userDto.birthDate);
     }
 
