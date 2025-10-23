@@ -1,39 +1,28 @@
-package com.campos.jpa_hib.entities;
+package com.campos.jpa_hib.dto.v1.orderDto;
 
+import com.campos.jpa_hib.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-@Entity
-@Table(name = "payment_tb")
-public class Payment implements Serializable {
+public class OrderSummaryDto {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
-    @JsonIgnore
-    @OneToOne
-    @MapsId
-    private Order order;
+    private OrderStatus orderStatus;
+    private Double total;
 
-    public Payment() {}
+    public OrderSummaryDto() {}
 
-    public Payment(Long id, Instant moment, Order order) {
+    public OrderSummaryDto(Long id, Instant moment, OrderStatus orderStatus, Double total) {
         this.id = id;
         this.moment = moment;
-        this.order = order;
+        this.orderStatus = orderStatus;
+        this.total = total;
     }
 
     public Long getId() {
@@ -52,19 +41,27 @@ public class Payment implements Serializable {
         this.moment = moment;
     }
 
-    public Order getOrder() {
-        return order;
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Payment payment = (Payment) o;
-        return Objects.equals(id, payment.id);
+        OrderSummaryDto that = (OrderSummaryDto) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override

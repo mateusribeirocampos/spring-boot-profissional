@@ -1,8 +1,8 @@
 package com.campos.jpa_hib.services;
 
-import com.campos.jpa_hib.dto.v1.UserCreateDto;
-import com.campos.jpa_hib.dto.v1.UserResponseDto;
-import com.campos.jpa_hib.dto.v1.UserUpdateDto;
+import com.campos.jpa_hib.dto.v1.userDto.UserCreateDto;
+import com.campos.jpa_hib.dto.v1.userDto.UserResponseDto;
+import com.campos.jpa_hib.dto.v1.userDto.UserUpdateDto;
 import com.campos.jpa_hib.entities.User;
 import com.campos.jpa_hib.mapper.UserMapper;
 import com.campos.jpa_hib.repositories.UserRepository;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {

@@ -1,9 +1,8 @@
 package com.campos.jpa_hib.resources;
 
-import com.campos.jpa_hib.dto.v1.UserCreateDto;
-import com.campos.jpa_hib.dto.v1.UserResponseDto;
-import com.campos.jpa_hib.dto.v1.UserUpdateDto;
-import com.campos.jpa_hib.entities.User;
+import com.campos.jpa_hib.dto.v1.userDto.UserCreateDto;
+import com.campos.jpa_hib.dto.v1.userDto.UserResponseDto;
+import com.campos.jpa_hib.dto.v1.userDto.UserUpdateDto;
 import com.campos.jpa_hib.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

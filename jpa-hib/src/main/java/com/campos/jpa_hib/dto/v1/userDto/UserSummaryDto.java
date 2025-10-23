@@ -1,4 +1,4 @@
-package com.campos.jpa_hib.dto.v1;
+package com.campos.jpa_hib.dto.v1.userDto;
 
 import java.util.Objects;
 

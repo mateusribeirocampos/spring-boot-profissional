@@ -1,39 +1,23 @@
-package com.campos.jpa_hib.entities;
+package com.campos.jpa_hib.dto.v1.paymentDto;
 
+import com.campos.jpa_hib.entities.Order;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-@Entity
-@Table(name = "payment_tb")
-public class Payment implements Serializable {
+public class PaymentDto {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
-    @JsonIgnore
-    @OneToOne
-    @MapsId
-    private Order order;
+    public PaymentDto() {}
 
-    public Payment() {}
-
-    public Payment(Long id, Instant moment, Order order) {
+    public PaymentDto(Long id, Instant moment) {
         this.id = id;
         this.moment = moment;
-        this.order = order;
     }
 
     public Long getId() {
@@ -52,19 +36,11 @@ public class Payment implements Serializable {
         this.moment = moment;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Payment payment = (Payment) o;
-        return Objects.equals(id, payment.id);
+        PaymentDto that = (PaymentDto) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override

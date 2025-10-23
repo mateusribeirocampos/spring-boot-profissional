@@ -1,11 +1,10 @@
 package com.campos.jpa_hib.mapper;
 
-import com.campos.jpa_hib.dto.v1.UserCreateDto;
-import com.campos.jpa_hib.dto.v1.UserResponseDto;
-import com.campos.jpa_hib.dto.v1.UserSummaryDto;
-import com.campos.jpa_hib.dto.v1.UserUpdateDto;
+import com.campos.jpa_hib.dto.v1.userDto.UserCreateDto;
+import com.campos.jpa_hib.dto.v1.userDto.UserResponseDto;
+import com.campos.jpa_hib.dto.v1.userDto.UserSummaryDto;
+import com.campos.jpa_hib.dto.v1.userDto.UserUpdateDto;
 import com.campos.jpa_hib.entities.User;
-import org.hibernate.annotations.Comment;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -40,7 +39,8 @@ public class UserMapper {
                 entity.getName()
         );
     }
-    /*
+
+    /**
     * convert entities list to DTOs list
     * */
 
@@ -52,7 +52,7 @@ public class UserMapper {
                 .collect(Collectors.toList());
     }
 
-    /*
+    /**
     * Convert CreateDto to entity
     * Receive: name, email, birthDate, phone and password
     * */
@@ -67,7 +67,7 @@ public class UserMapper {
         return entity;
     }
 
-    /*
+    /**
     * Update entity from UpdateDto
     * update: name, email, phone, birthDate
     * do not update: password

@@ -1,4 +1,4 @@
-package com.campos.jpa_hib.dto.v1;
+package com.campos.jpa_hib.dto.v1.userDto;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -9,7 +9,7 @@ public class UserCreateDto {
     private String email;
     private LocalDate birthDate;
     private String phone;
-    private String password;  // ← Recebe senha para criar usuário
+    private String password;  //
 
     public UserCreateDto() {}
 
