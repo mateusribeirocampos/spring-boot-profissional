@@ -1,5 +1,6 @@
 package com.campos.jpa_hib.resources;
 
+import com.campos.jpa_hib.dto.v1.orderDto.OrderResponseDto;
 import com.campos.jpa_hib.entities.Order;
 import com.campos.jpa_hib.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,26 @@ public class OrderResource {
   @Autowired
   private OrderService orderService;
 
+//  @GetMapping
+//  public ResponseEntity<List<Order>> findAll() {
+//    List<Order> listOrder = orderService.findAll();
+//    return ResponseEntity.ok().body(listOrder);
+//  }
   @GetMapping
-  public ResponseEntity<List<Order>> findAll() {
-    List<Order> listOrder = orderService.findAll();
-    return ResponseEntity.ok().body(listOrder);
+  public ResponseEntity<List<OrderResponseDto>> findAll() {
+      List<OrderResponseDto> listOrderDto = orderService.findAll();
+      return ResponseEntity.ok().body(listOrderDto);
   }
 
-  @GetMapping(value = "/{id}")
-  public ResponseEntity<Order> findById(@PathVariable Long id) {
-    Order obj = orderService.findById(id);
-    return ResponseEntity.ok().body(obj);
-  }
+//  @GetMapping(value = "/{id}")
+//  public ResponseEntity<Order> findById(@PathVariable Long id) {
+//    Order obj = orderService.findById(id);
+//    return ResponseEntity.ok().body(obj);
+//  }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<OrderResponseDto> findById(@PathVariable Long id) {
+      OrderResponseDto orderDto = orderService.findById(id);
+      return ResponseEntity.ok().body(orderDto);
+    }
 }

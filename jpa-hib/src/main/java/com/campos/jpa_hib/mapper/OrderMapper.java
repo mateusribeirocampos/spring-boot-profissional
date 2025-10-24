@@ -14,6 +14,15 @@ import java.util.stream.Collectors;
 
 @Component
 public class OrderMapper {
+
+    public List<OrderResponseDto> toResponseDtoList(List<Order> entities) {
+        if (entities == null) return null;
+
+        return entities.stream()
+                .map(this::toResponseDto)
+                .collect(Collectors.toList());
+    }
+
     
     /**
      * convert entity Order to OrderResponseDto
