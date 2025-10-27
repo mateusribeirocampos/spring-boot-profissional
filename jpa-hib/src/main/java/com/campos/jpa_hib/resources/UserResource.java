@@ -4,6 +4,7 @@ import com.campos.jpa_hib.dto.v1.userDto.UserCreateDto;
 import com.campos.jpa_hib.dto.v1.userDto.UserResponseDto;
 import com.campos.jpa_hib.dto.v1.userDto.UserUpdateDto;
 import com.campos.jpa_hib.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class UserResource {
     }*/
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<UserResponseDto> findById(@PathVariable Long id) {
+    public ResponseEntity<UserResponseDto> findById(@Valid @PathVariable Long id) {
         UserResponseDto userDto = userService.findById(id);
         return ResponseEntity.ok().body(userDto);
     }
@@ -54,7 +55,7 @@ public class UserResource {
     }*/
 
     @PostMapping()
-    public ResponseEntity<UserResponseDto> create(@RequestBody UserCreateDto dto) {
+    public ResponseEntity<UserResponseDto> create(@Valid @RequestBody UserCreateDto dto) {
         UserResponseDto created = userService.create(dto);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -71,13 +72,13 @@ public class UserResource {
     }*/
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<UserResponseDto> update(@PathVariable Long id, @RequestBody UserUpdateDto dto) {
+    public ResponseEntity<UserResponseDto> update(@Valid @PathVariable Long id,@Valid @RequestBody UserUpdateDto dto) {
         UserResponseDto updatedUser = userService.update(id, dto);
         return ResponseEntity.ok().body(updatedUser);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@Valid @PathVariable Long id) {
     userService.delete(id);
     return ResponseEntity.noContent().build();
     }

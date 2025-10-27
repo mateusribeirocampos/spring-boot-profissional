@@ -1,15 +1,31 @@
 package com.campos.jpa_hib.dto.v1.userDto;
 
+import jakarta.validation.constraints.*;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class UserCreateDto {
 
+    @NotBlank(message = "Name is obligatory")
+    @Size(min=3, max = 100, message = "Name must have between 3 and 100 characters")
     private String name;
+
+    @NotBlank(message = "Email is obligatory")
+    @Email(message = "Email invalid")
     private String email;
+
+    @NotNull(message = "Birth date is obligatory")
+    @Past(message = "Birth date must not in the past")
     private LocalDate birthDate;
+
+    @NotBlank(message = "Phone number is obligatory")
+    @Pattern(regexp = "\\d{9,11}", message = "Phone number must have between 9 and 11 digits")
     private String phone;
-    private String password;  //
+
+    @NotBlank(message = "Password is obligatory")
+    @Size(min = 6, message = "Password must have minimum 6 characters")
+    private String password;
 
     public UserCreateDto() {}
 

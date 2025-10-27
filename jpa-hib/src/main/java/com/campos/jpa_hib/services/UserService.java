@@ -25,6 +25,9 @@ public class UserService {
   @Autowired
   private UserMapper userMapper;
 
+  @Autowired
+  private PasswordService passwordService;
+
   /* public List<User> findAll() {
     return userRepository.findAll();
   }*/
@@ -55,12 +58,22 @@ public class UserService {
 
     @Transactional
     public UserResponseDto create(UserCreateDto dto) {
+
+       if (userRepository.existsByEmail(dto.getEmail())) {
+           throw new DatabaseException("Email was already registered");
+       }
+
         User user = userMapper.toEntity(dto);
+
+       String encryptedPassword = passwordService.encode(user.getPassword());
+       //IO.println("password encrypted"  + encryptedPassword);
+       user.setPassword(encryptedPassword);
+
         User saveUser = userRepository.save(user);
         return userMapper.toResponseDto(saveUser);
     }
 
-  /*public User update(Long id, User obj) {
+  /* public User update(Long id, User obj) {
     try {
       User entity = userRepository.getReferenceById(id);
       updateData(entity, obj);
