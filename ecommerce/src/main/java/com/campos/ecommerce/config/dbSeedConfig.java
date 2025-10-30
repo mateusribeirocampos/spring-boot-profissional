@@ -63,5 +63,7 @@ public class dbSeedConfig implements CommandLineRunner {
         Payment p1 = new Payment(null, Instant.now(), o1);
         o1.setPayment(p1);
         orderRepository.save(o1);
+
+        IO.println("Database seeded successfully!");
     }
 }
