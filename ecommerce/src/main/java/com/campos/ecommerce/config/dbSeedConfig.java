@@ -1,9 +1,11 @@
 package com.campos.ecommerce.config;
 
 import com.campos.ecommerce.entities.Order;
+import com.campos.ecommerce.entities.Payment;
 import com.campos.ecommerce.entities.User;
 import com.campos.ecommerce.entities.enums.OrderStatus;
 import com.campos.ecommerce.repositories.OrderRepository;
+import com.campos.ecommerce.repositories.PaymentRepository;
 import com.campos.ecommerce.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,8 @@ public class dbSeedConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private PaymentRepository paymentRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -55,5 +59,9 @@ public class dbSeedConfig implements CommandLineRunner {
         for (Order o : Arrays.asList(o1, o2)) {
             System.out.println("✓ Order seeded: " + o.getOrderStatus());
         }
+
+        Payment p1 = new Payment(null, Instant.now(), o1);
+        o1.setPayment(p1);
+        orderRepository.save(o1);
     }
 }
