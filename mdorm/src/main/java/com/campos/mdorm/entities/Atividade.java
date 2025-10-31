@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "tb_atividades")
+@Table(name = "tb_atividade")
 public class Atividade {
 
     @Id
@@ -17,7 +17,7 @@ public class Atividade {
     @Column(columnDefinition = "TEXT")
     private String descricao;
 
-    private Double price;
+    private Double preco;
 
     @ManyToMany(mappedBy = "atividades")
     private Set<Participante> participantes = new HashSet<>();
@@ -31,11 +31,11 @@ public class Atividade {
 
     public Atividade() {}
 
-    public Atividade(Integer id, String nome, String descricao, Double price, Set<Participante> participantes, List<Bloco> blocos, Categoria categoria) {
+    public Atividade(Integer id, String nome, String descricao, Double preco, Set<Participante> participantes, List<Bloco> blocos, Categoria categoria) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.price = price;
+        this.preco = preco;
         this.participantes = participantes;
         this.blocos = blocos;
         this.categoria = categoria;
@@ -65,12 +65,12 @@ public class Atividade {
         this.descricao = descricao;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getpreco() {
+        return preco;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setpreco(Double preco) {
+        this.preco = preco;
     }
 
     public Set<Participante> getParticipantes() {

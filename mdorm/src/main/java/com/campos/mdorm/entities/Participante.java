@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "tb_paricipante")
+@Table(name = "tb_participante")
 public class Participante implements Serializable {
 
     @Serial
@@ -22,7 +22,7 @@ public class Participante implements Serializable {
     private String nome;
     private String email;
 
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "tb_participante_atividade",
                 joinColumns = @JoinColumn(name = "participante_id"),
                 inverseJoinColumns = @JoinColumn(name = "atividade_id"))
