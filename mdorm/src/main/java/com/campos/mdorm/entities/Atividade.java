@@ -65,11 +65,11 @@ public class Atividade {
         this.descricao = descricao;
     }
 
-    public Double getpreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setpreco(Double preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 
