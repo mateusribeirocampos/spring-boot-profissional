@@ -1,7 +1,6 @@
 package com.campos.ecommerce.controllers;
 
 import com.campos.ecommerce.dto.ProductDto;
-import com.campos.ecommerce.entities.Product;
 import com.campos.ecommerce.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
