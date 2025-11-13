@@ -44,4 +44,11 @@ public class ProductController {
                 .toUri();
         return ResponseEntity.created(uri).body(dto);
     }
+
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ProductDto> update(@PathVariable Long id,
+                                             @RequestBody ProductDto dto) {
+        dto = productService.update(id, dto);
+        return ResponseEntity.ok(dto);
+    }
 }
