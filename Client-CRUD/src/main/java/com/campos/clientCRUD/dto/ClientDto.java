@@ -1,5 +1,7 @@
 package com.campos.clientCRUD.dto;
 
+import com.campos.clientCRUD.entities.Client;
+
 import java.time.LocalDate;
 
 public class ClientDto {
@@ -20,6 +22,15 @@ public class ClientDto {
         this.income = income;
         this.birthDate = birthDate;
         this.children = children;
+    }
+
+    public ClientDto(Client entity) {
+        id = entity.getId();
+        name = entity.getName();
+        cpf = entity.getCpf();
+        income = entity.getIncome();
+        birthDate = entity.getBirthDate();
+        children = entity.getChildren();
     }
 
     public Long getId() {
