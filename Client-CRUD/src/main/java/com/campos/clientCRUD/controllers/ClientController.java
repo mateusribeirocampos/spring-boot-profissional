@@ -45,6 +45,13 @@ public class ClientController {
                 .path("{id}")
                 .buildAndExpand(dto.getId())
                 .toUri();
+        return ResponseEntity.created(uri).body(dto);
+    }
+
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ClientDto> update(@PathVariable Long id, @RequestBody ClientDto dto) {
+        logger.info("PUT /clients/{} - Updating client with name: {}", id, dto.getName());
+        dto = clientService.update(id, dto);
         return ResponseEntity.ok(dto);
     }
 
