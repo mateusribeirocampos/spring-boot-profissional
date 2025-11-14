@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: Client-CRUD
+  profiles:
+    active: test
+  jpa:
+    open-in-view: true
