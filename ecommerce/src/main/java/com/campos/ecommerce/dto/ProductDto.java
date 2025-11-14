@@ -2,13 +2,24 @@ package com.campos.ecommerce.dto;
 
 import com.campos.ecommerce.entities.Product;
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.URL;
 
 public class ProductDto {
 
     private Long id;
+
+    @Size(min = 3, max = 80, message = "Character number should be between 3 and 80")
+    @NotBlank(message = "Name cannot be empty")
     private String name;
+
+    @Size(min = 3, message = "Character number should be between 3 and 80")
+    @NotBlank(message = "Name cannot be empty")
     private String description;
+
+    @Positive(message = "The price cannot be negative")
     private Double price;
+
     private String imgUrl;
 
     public ProductDto() {}

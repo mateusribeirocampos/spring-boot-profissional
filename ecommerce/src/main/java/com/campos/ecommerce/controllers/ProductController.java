@@ -2,6 +2,7 @@ package com.campos.ecommerce.controllers;
 
 import com.campos.ecommerce.dto.ProductDto;
 import com.campos.ecommerce.services.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/products")
@@ -34,7 +33,7 @@ public class ProductController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ProductDto> create(@RequestBody ProductDto dto) {
+    public ResponseEntity<ProductDto> create(@Valid @RequestBody ProductDto dto) {
         dto = productService.create(dto);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -46,7 +45,7 @@ public class ProductController {
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ProductDto> update(@PathVariable Long id,
-                                             @RequestBody ProductDto dto) {
+                                             @Valid @RequestBody ProductDto dto) {
         dto = productService.update(id, dto);
         return ResponseEntity.ok(dto);
     }
