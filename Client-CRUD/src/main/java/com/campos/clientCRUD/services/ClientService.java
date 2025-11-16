@@ -9,7 +9,9 @@ import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -63,6 +65,20 @@ public class ClientService {
         } catch (EntityNotFoundException e) {
             throw new DatabaseException("Entity not found with id: " + id);
         }
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void delete(Long id) {
+        logger.info("Deleting client with id: {} ", id);
+        if (!clientRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Resource not found for id: " + id);
+        }
+        try {
+            clientRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Referential integrity failure");
+        }
+        logger.info("Client deleted successfully!");
     }
 
     private void copyDtoToEntity(ClientDto dto, Client entity) {
