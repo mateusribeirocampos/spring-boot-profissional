@@ -5,6 +5,8 @@ import com.campos.clientCRUD.services.ClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +25,9 @@ public class ClientController {
     private ClientService clientService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ClientDto>> findAll() {
+    public ResponseEntity<Page<ClientDto>> findAll(Pageable pageable) {
         logger.info("GET /clients - Finding all clients");
-        List<ClientDto> dto = clientService.findAll();
+        Page<ClientDto> dto = clientService.findAll(pageable);
         return ResponseEntity.ok(dto);
     }
 

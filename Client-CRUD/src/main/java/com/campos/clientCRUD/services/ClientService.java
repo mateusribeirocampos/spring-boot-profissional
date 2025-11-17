@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,11 +28,11 @@ public class ClientService {
     private ClientRepository clientRepository;
 
     @Transactional(readOnly = true)
-    public List<ClientDto> findAll() {
+    public Page<ClientDto> findAll(Pageable pageable) {
         logger.info("Finding all clients");
-        List<Client> entityList = clientRepository.findAll();
+        Page<Client> entityList = clientRepository.findAll(pageable);
         logger.info("All clients were found successfully");
-        return entityList.stream().map(ClientDto::new).collect(Collectors.toList());
+        return entityList.map(ClientDto::new);
     }
 
     @Transactional(readOnly = true)
