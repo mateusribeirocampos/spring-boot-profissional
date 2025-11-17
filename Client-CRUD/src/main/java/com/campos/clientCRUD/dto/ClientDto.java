@@ -13,8 +13,8 @@ public class ClientDto {
     @NotBlank(message = "Name cannot be empty")
     private String name;
 
-    @Size(min = 11, max = 11, message = "CPF must have 11 numbers")
-    @NotBlank(message = "Name cannot be empty")
+    @Pattern(regexp = "\\d{11}", message = "CPF must contain exactly 11 digits")
+    @NotBlank(message = "CPF cannot be empty")
     private String cpf;
 
     @Positive(message = "The income must be positive")
