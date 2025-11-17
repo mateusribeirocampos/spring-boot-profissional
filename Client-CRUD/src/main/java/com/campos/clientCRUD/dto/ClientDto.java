@@ -1,16 +1,29 @@
 package com.campos.clientCRUD.dto;
 
 import com.campos.clientCRUD.entities.Client;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
 public class ClientDto {
 
     private Long id;
+
+    @Size(min = 3, max = 80, message = "The number of characters must be between 3 and 80!")
+    @NotBlank(message = "Name cannot be empty")
     private String name;
+
+    @Size(min = 11, max = 11, message = "CPF must have 11 numbers")
+    @NotBlank(message = "Name cannot be empty")
     private String cpf;
+
+    @Positive(message = "The income must be positive")
     private Double income;
+
+    @PastOrPresent(message = "Future date is not valid for date of birth.")
     private LocalDate birthDate;
+
+    @PositiveOrZero(message = "the number of children must be positive or zero")
     private Integer children;
 
     public ClientDto() {}

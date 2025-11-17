@@ -2,6 +2,7 @@ package com.campos.clientCRUD.controllers;
 
 import com.campos.clientCRUD.dto.ClientDto;
 import com.campos.clientCRUD.services.ClientService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class ClientController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ClientDto> create(@RequestBody ClientDto dto) {
+    public ResponseEntity<ClientDto> create(@Valid @RequestBody ClientDto dto) {
         logger.info("POST /clients - Creating a client with name: {} ", dto.getName());
         dto = clientService.create(dto);
         URI uri = ServletUriComponentsBuilder
@@ -51,7 +52,7 @@ public class ClientController {
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ClientDto> update(@PathVariable Long id, @RequestBody ClientDto dto) {
+    public ResponseEntity<ClientDto> update(@PathVariable Long id, @Valid @RequestBody ClientDto dto) {
         logger.info("PUT /clients/{} - Updating client with name: {}", id, dto.getName());
         dto = clientService.update(id, dto);
         return ResponseEntity.ok(dto);
