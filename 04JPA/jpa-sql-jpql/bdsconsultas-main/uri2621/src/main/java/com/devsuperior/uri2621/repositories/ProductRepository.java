@@ -6,4 +6,6 @@ import com.devsuperior.uri2621.entities.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
+    
+
 }
