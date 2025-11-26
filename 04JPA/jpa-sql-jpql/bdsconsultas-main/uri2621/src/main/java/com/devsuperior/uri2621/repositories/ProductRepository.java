@@ -1,5 +1,6 @@
 package com.devsuperior.uri2621.repositories;
 
+import com.devsuperior.uri2621.dto.ProductMinDto;
 import com.devsuperior.uri2621.projections.ProductMinProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,4 +18,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "WHERE products.amount BETWEEN :min AND :max " +
             "AND providers.name LIKE CONCAT(:beginName, '%')")
     List<ProductMinProjection> search1(Integer min, Integer max, String beginName);
+
+    @Query("SELECT new com.devsuperior.uri2621.dto.ProductMinDto(obj.name) " +
+            "FROM Product obj " +
+            "WHERE obj.amount BETWEEN :min AND :max " +
+            "AND obj.provider.name LIKE CONCAT(:beginName, '%')")
+    List<ProductMinDto> search2(Integer min, Integer max, String beginName);
 }

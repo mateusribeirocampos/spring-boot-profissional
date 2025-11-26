@@ -37,5 +37,12 @@ public class Uri2621Application implements CommandLineRunner {
         }
 
         System.out.println("\n\n");
+
+        List<ProductMinDto> result2 = repository.search2(10, 20, "P");
+
+        System.out.println("\n*** RESULTADO SQL RAIZ");
+        for (ProductMinDto obj : result2) {
+            System.out.println(obj);
+        }
 	}
 }
