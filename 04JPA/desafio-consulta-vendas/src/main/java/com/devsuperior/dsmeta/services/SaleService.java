@@ -31,7 +31,7 @@ public class SaleService {
             maxDateToday = LocalDate.parse(maxDate);
         }
         LocalDate minLocalDate;
-        if (minDate == null) {
+        if (minDate == null || minDate.isEmpty()) {
             minLocalDate = maxDateToday.minusYears(1L);
         } else {
             minLocalDate = LocalDate.parse(minDate);
@@ -40,7 +40,7 @@ public class SaleService {
         return result.map(SaleMinDTO::new);
     }
 
-    public Page<SaleSummaryDTO> getSummary(String minDate, String maxDate, Pageable pageable) {
+    public List<SaleSummaryDTO> getSummary(String minDate, String maxDate) {
         LocalDate maxDateToday;
         if (maxDate == null || maxDate.isEmpty()) {
             maxDateToday = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
@@ -48,12 +48,12 @@ public class SaleService {
             maxDateToday = LocalDate.parse(maxDate);
         }
         LocalDate minLocalDate;
-        if (minDate == null) {
+        if (minDate == null || minDate.isEmpty()) {
             minLocalDate = maxDateToday.minusYears(1L);
         } else {
             minLocalDate = LocalDate.parse(minDate);
         }
-        return repository.searchSummary(minLocalDate, maxDateToday, pageable);
+        return repository.searchSummary(minLocalDate, maxDateToday);
     }
 	
 	public SaleMinDTO findById(Long id) {

@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface SaleRepository extends JpaRepository<Sale, Long> {
 
@@ -30,12 +31,9 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
             "FROM Sale obj JOIN obj.seller " +
             "WHERE obj.date BETWEEN :minDate AND :maxDate " +
             "GROUP BY obj.seller.name " +
-            "ORDER BY obj.seller.name ASC",
-        countQuery = "SELECT COUNT(DISTINCT obj.seller) FROM Sale obj JOIN obj.seller " +
-                "WHERE obj.date BETWEEN :minDate AND :maxDate")
-    Page<SaleSummaryDTO> searchSummary(
+            "ORDER BY obj.seller.name ASC")
+    List<SaleSummaryDTO> searchSummary(
             @Param("minDate") LocalDate minDate,
-            @Param("maxDate") LocalDate maxDate,
-            Pageable pageable
+            @Param("maxDate") LocalDate maxDate
     );
 }
