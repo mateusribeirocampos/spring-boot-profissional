@@ -2,9 +2,12 @@ package com.devsuperior.demo.repositories;
 
 import com.devsuperior.demo.entities.Product;
 import com.devsuperior.demo.entities.User;
+import com.devsuperior.demo.projections.UserDetailsProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -18,6 +21,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 			INNER JOIN tb_role ON tb_role.id = tb_user_role.role_id
 			WHERE tb_user.email = :email
 		""")
-
-
+	List<UserDetailsProjection> searchUserAndRolesByEmail(String email);
 }
