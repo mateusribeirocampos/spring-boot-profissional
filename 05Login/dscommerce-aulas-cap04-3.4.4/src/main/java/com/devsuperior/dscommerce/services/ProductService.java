@@ -1,6 +1,8 @@
 package com.devsuperior.dscommerce.services;
 
+import com.devsuperior.dscommerce.dto.CategoryDTO;
 import com.devsuperior.dscommerce.dto.ProductMinDTO;
+import com.devsuperior.dscommerce.entities.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -75,5 +77,17 @@ public class ProductService {
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());
         entity.setImgUrl(dto.getImgUrl());
+
+        System.out.println("Limpar categorias antes de copiar");
+        entity.getCategories().clear();
+        for (CategoryDTO catDto : dto.getCategories()) {
+            System.out.println("***** for para categorias na camada Service *****");
+            System.out.println("copyDtoToEntity catDto.getName: " + catDto.getName());
+            Category cat = new Category();
+            cat.setId(catDto.getId());
+            System.out.println("copyDtoToEntity cat.getName: " + cat.getName());
+            entity.getCategories().add(cat);
+            System.out.println("copyDtoToEntity entity.getCategories() tamanho: " + entity.getCategories().size());
+        }
     }
 }
